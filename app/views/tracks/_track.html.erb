@@ -8,21 +8,21 @@
     <% end %>
   </span>
   <% if current_user&.live_station&.live? %>
-    <%= button_to play_live_station_track_path(track), method: :post, form_class: "track--title" do %>
+    <%= button_to play_live_station_track_path(track), data: {"turbo-frame" => "_self"}, method: :post, form_class: "track--title" do %>
       <%= track.title %>
     <% end %>
   <% else %>
-    <%= link_to track.title, params.to_unsafe_h.merge(track_id: track.id), class: "track--title" %>
+    <%= link_to track.title, params.to_unsafe_h.merge(track_id: track.id), data: {"turbo-frame" => "_self"}, class: "track--title" %>
   <% end %>
   <% if current_user %>
     <span class="track--actions">
       <% if enqueueble %>
-        <%= button_to live_station_tracks_path(track_id: track.id), method: :post, class: "track--action" do %>
+        <%= button_to live_station_tracks_path(track_id: track.id), data: {"turbo-frame" => "_self"}, method: :post, class: "track--action" do %>
           <%= render "icons/plus" %>
         <% end %>
       <% end %>
       <% if deletable %>
-        <%= button_to live_station_track_path(track), method: :delete, class: "track--action" do %>
+        <%= button_to live_station_track_path(track), data: {"turbo-frame" => "_self"}, method: :delete, class: "track--action" do %>
           <%= render "icons/trash" %>
         <% end %>
       <% end %>
