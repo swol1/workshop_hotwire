@@ -1,0 +1,13 @@
+<%# locals: (artist:, tracks:, limit:, tracks_amount:) -%>
+<ul class="tracks mt-2">
+  <%= turbo_frame_tag dom_id(artist, :popular_tracks), target: "_top" do %>
+    <%= render tracks, enqueueble: true %>
+  <% end %>
+
+  <% if tracks_amount > limit %>
+    <li class="track">
+      <span class="track--number"></span>
+      <%= link_to 'Load More', artist_path(artist, limit:), data: {"turbo-frame" => "popular_tracks"}, class: "text-secondary hover:text-primary transition-colors" %>
+    </li>
+  </ul>
+<% end %>
