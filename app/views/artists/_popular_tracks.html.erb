@@ -6,7 +6,7 @@
     <% if tracks_amount > limit %>
       <li class="track">
         <span class="track--number"></span>
-        <%= link_to 'Load More', artist_path(artist, limit:), data: {"turbo-frame" => "_self", "turbo-frame" => "popular_tracks"}, class: "text-secondary hover:text-primary transition-colors" %>
+        <%= link_to 'Load More', artist_path(artist, limit:), data: {"turbo-frame" => "_self"}, class: "text-secondary hover:text-primary transition-colors" %>
       </li>
     </ul>
   <% end %>
