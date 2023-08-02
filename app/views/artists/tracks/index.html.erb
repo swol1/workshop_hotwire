@@ -1,3 +1,4 @@
+<%# locals: (artist:, tracks:, page:, offset:, total_pages:) -%>
 <div class="artist-header">
   <div class="artist-image">
     <% if artist.cover.attached? %>
@@ -19,19 +20,9 @@
 <hr class="my-4">
 
 <div class="flex">
-  <h2 class="mt-4 text-header-2 mr-auto">Popular</h2>
-  <%= link_to 'Sea all', artist_tracks_path(artist), class: "ml-auto self-end text-secondary hover:text-primary transition-colors" %>
+  <h2 class="mt-4 text-header-2 mr-auto">Tracks</h2>
 </div>
 
 <ul class="tracks mt-2">
-  <%= render tracks, enqueueble: true %>
-
-  <li class="track">
-    <span class="track--number"></span>
-    <a href="#" class="text-secondary hover:text-primary transition-colors">Load more</a>
-  </li>
+  <%= render partial: "track_list", locals: {artist:, tracks:, page:, total_pages:, offset:} %>
 </ul>
-
-<hr class="my-4"/>
-
-<%= render partial: "discography", locals: {artist:, albums:} %>

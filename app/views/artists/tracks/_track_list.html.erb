@@ -1,0 +1,8 @@
+<%# locals: (artist:, tracks:, page:, offset:, total_pages:) -%>
+<%= turbo_frame_tag dom_id(artist, "track_list_page_#{page}"), target: "_top" do %>
+  <%= render partial: "tracks/track", collection: tracks, locals: {enqueueble: true, offset:} %>
+
+  <% if page < total_pages %>
+     <%= turbo_frame_tag dom_id(artist, "track_list_page_#{page+1}"), src: artist_tracks_path(artist, page: page + 1), loading: :lazy, target: "_self" %>
+  <% end %>
+<% end %>
